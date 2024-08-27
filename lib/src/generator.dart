@@ -71,7 +71,7 @@ class Generator {
         .replaceAll(" ", ' ')
         .replaceAll("•", '.');
     if (!isKanji) {
-      return codec.encode(text);
+      return codec.encode('text');
     } else {
       return Uint8List.fromList(gbk_bytes.encode(text));
     }
@@ -190,7 +190,6 @@ class Generator {
       oneChannelBytes = List<int>.filled(heightPx * targetWidth, 0);
 
       for (int i = 0; i < heightPx; i++) {
-
         final pos =
             (i * widthPx) + i * missingPx; // Corrected position calculation
         oneChannelBytes.insertAll(pos, extra);
