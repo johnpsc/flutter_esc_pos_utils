@@ -71,7 +71,8 @@ class Generator {
         .replaceAll(" ", ' ')
         .replaceAll("•", '.');
     if (!isKanji) {
-      return codec.encode(text);
+      // return codec.encode(text);
+      return utf8.encode(text);
     } else {
       return Uint8List.fromList(gbk_bytes.encode(text));
     }
