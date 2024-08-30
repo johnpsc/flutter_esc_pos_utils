@@ -679,14 +679,14 @@ class Generator {
       final int densityByte =
           (highDensityVertical ? 0 : 1) + (highDensityHorizontal ? 0 : 2);
 
-      final List<int> header = List.from(cRasterImg2.codeUnits);
+      final List<int> header = List.from(cRasterImg2.codeUnits, growable: true);
       header.add(densityByte); // m
       header.addAll(_intLowHigh(widthBytes, 2)); // xL xH
       header.addAll(_intLowHigh(heightPx, 2)); // yL yH
       bytes += List.from(header)..addAll(rasterizedData);
     } else if (imageFn == PosImageFn.graphics) {
       // 'GS ( L' - FN_112 (Image data)
-      final List<int> header1 = List.from(cRasterImg.codeUnits);
+      final List<int> header1 = List.from(cRasterImg.codeUnits, growable: true);
       header1.addAll(_intLowHigh(widthBytes * heightPx + 10, 2)); // pL pH
       header1.addAll([48, 112, 48]); // m=48, fn=112, a=48
       header1.addAll([1, 1]); // bx=1, by=1
